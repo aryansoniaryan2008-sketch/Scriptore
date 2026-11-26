@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scriptora</title>
+  <style>
+    body { font: 16px system-ui, sans-serif; max-width: 42rem; margin: 12vh auto; padding: 0 1.25rem; color: #20283a; }
+    a { color: #7357ff; }
+  </style>
+</head>
+<body>
+  <p id="status">Loading Scriptora…</p>
+  <script>
+    fetch("https://raw.githubusercontent.com/aryansoniaryan2008-sketch/Scriptore/main/V2")
+      .then(response => {
+        if (!response.ok) throw new Error("Could not load the site (HTTP " + response.status + ").");
+        return response.text();
+      })
+      .then(html => {
+        document.open();
+        document.write(html);
+        document.close();
+      })
+      .catch(error => {
+        document.getElementById("status").innerHTML =
+          "Scriptora could not be loaded. <a href=\"https://github.com/aryansoniaryan2008-sketch/Scriptore/blob/main/V2\">Open the source file</a>. " + error.message;
+      });
+  </script>
+</body>
+</html>
