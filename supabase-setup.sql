@@ -137,9 +137,10 @@ create policy "Admins can update orders"
   using ((select public.is_admin()))
   with check ((select public.is_admin()));
 
--- Public tracking reveals only the status and fulfillment details after both
--- the hard-to-guess order number and matching customer phone/email are supplied.
-create or replace function public.track_order(p_order_no text, p_contact text)
+-- The portal expects this RPC to return a limited shape. Drop any older version
+-- first because PostgreSQL cannot change a function's OUT/return row type in place.
+drop function if exists public.track_order(text, text);
+create function public.track_order(p_order_no text, p_contact text)
 returns table(order_no text, status text, fulfillment text, created_at timestamptz, history jsonb)
 language sql
 stable
