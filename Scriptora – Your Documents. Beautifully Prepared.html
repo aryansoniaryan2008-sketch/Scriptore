@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Scriptora – Your Documents. Beautifully Prepared.</title>
+<meta name="description" content="Professional document preparation, handwriting-style lettering and formatting. Starting at ₹5/page.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap">
+<style>
+:root{--navy:#101B35;--purple:#7357FF;--cyan:#39D5E8;--bg:#F8F9FC;--surface:#fff;--text:#20283A;--muted:#566079;--border:#E1E5F0;--ptext:#5B3FE6;--err:#C2255C;--shadow:0 18px 40px -22px rgba(16,27,53,.35);color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0B1226;--surface:#141F3B;--text:#E8EBF5;--muted:#A3ACC5;--border:#26335A;--ptext:#AFA2FF;--err:#FF8AAE;--shadow:0 18px 40px -22px rgba(0,0,0,.8);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0B1226;--surface:#141F3B;--text:#E8EBF5;--muted:#A3ACC5;--border:#26335A;--ptext:#AFA2FF;--err:#FF8AAE;--shadow:0 18px 40px -22px rgba(0,0,0,.8);color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 84px)}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:60}
+h1,h2,h3{font-family:Poppins,Inter,system-ui,sans-serif;margin:0;line-height:1.18;letter-spacing:-.02em}
+h2{font-size:clamp(1.6rem,3.6vw,2.3rem)}h3{font-size:1.1rem;letter-spacing:-.01em}
+p{margin:0}a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+section{padding:76px 0}
+.sub{color:var(--muted);max-width:60ch;margin-top:12px}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:2px}
+.skip{position:absolute;left:-999px}.skip:focus{left:12px;top:12px;z-index:100;background:#fff;color:#000;padding:8px 12px;border-radius:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 24px;border-radius:12px;font:600 15px Poppins,sans-serif;border:1px solid transparent;cursor:pointer;text-decoration:none;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-p{background:var(--purple);color:#fff;box-shadow:0 12px 24px -12px var(--purple)}
+.btn-s{background:var(--surface);color:var(--text);border-color:var(--border)}
+.btn.sm{padding:9px 16px;font-size:14px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:22px;box-shadow:var(--shadow)}
+.announce{background:#101B35;color:#fff;text-align:center;font-size:14px;padding:9px 16px}.announce span{color:var(--cyan);margin:0 6px}
+.hdr{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;font:700 21px Poppins,sans-serif;text-decoration:none;letter-spacing:-.02em}
+.logo i{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--purple),var(--cyan))}
+.links{display:flex;gap:18px}.links a{text-decoration:none;color:var(--muted);font-size:15px;font-weight:500}.links a:hover{color:var(--text)}
+.acts{display:flex;align-items:center;gap:14px}.acts .login{text-decoration:none;font-weight:500;font-size:15px}
+.burger{display:none;background:none;border:1px solid var(--border);border-radius:10px;width:42px;height:42px;color:var(--text);cursor:pointer}
+.m-only{display:none}
+@media(max-width:900px){.links{display:none}.links.open{display:flex;flex-direction:column;gap:6px;position:absolute;left:0;right:0;top:100%;background:var(--surface);padding:12px 20px 18px;border-bottom:1px solid var(--border)}.links.open a{padding:10px 0;font-size:16px}.m-only{display:block}.acts .login{display:none}.burger{display:grid;place-items:center}}
+.hero{padding:56px 0 48px;background:radial-gradient(60% 70% at 85% 10%,rgba(115,87,255,.18),transparent 70%),radial-gradient(40% 50% at 5% 90%,rgba(57,213,232,.16),transparent 70%)}
+.hgrid{display:grid;gap:40px;align-items:center}
+@media(min-width:900px){.hgrid{grid-template-columns:1.05fr 1fr}}
+h1{font-size:clamp(2.2rem,5.4vw,3.7rem);font-weight:700}
+.lead{font-size:1.125rem;color:var(--muted);margin-top:18px;max-width:52ch}
+.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.fine{margin-top:18px;font-size:14px;color:var(--muted)}
+.art{position:relative;padding:0;overflow:hidden}.art svg{display:block;width:100%;height:auto}
+.play-pill{position:absolute;left:14px;bottom:14px;display:flex;align-items:center;gap:10px;background:var(--navy);color:#fff;border:0;border-radius:999px;padding:8px 16px 8px 8px;font:600 14px Poppins,sans-serif;cursor:pointer}
+.play-pill b,.play b{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--cyan))}
+.pen{stroke-dasharray:260;stroke-dashoffset:260;animation:write 2.6s .4s ease forwards}
+@keyframes write{to{stroke-dashoffset:0}}
+.grid{display:grid;gap:18px;margin-top:36px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.trust{padding:0 0 20px}.trust .grid{margin-top:0}
+.tr{display:flex;gap:12px;align-items:flex-start;padding:18px;border-radius:16px;background:var(--surface);border:1px solid var(--border)}
+.tr svg{flex:none;color:var(--ptext)}.tr b{display:block;font:600 15px Poppins,sans-serif}.tr span{font-size:14px;color:var(--muted)}
+.svc{padding:26px;display:flex;flex-direction:column;gap:10px}
+.tile{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--purple),#5B8CFF 60%,var(--cyan))}
+.svc p{color:var(--muted);font-size:15px;flex:1}.from{font-weight:600}.from b{font:700 20px Poppins,sans-serif;color:var(--ptext)}
+.link{background:none;border:0;padding:0;color:var(--ptext);font:600 15px Inter,sans-serif;cursor:pointer;text-align:left;text-decoration:underline;text-underline-offset:4px}
+.alt{background:var(--surface);border-block:1px solid var(--border)}
+.steps{counter-reset:s}.step{padding:24px;border-radius:18px;background:var(--bg);border:1px solid var(--border)}
+.step::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--navy);color:#fff;font:600 15px Poppins,sans-serif;margin-bottom:14px}
+.step p{color:var(--muted);font-size:15px;margin-top:6px}
+.pipe{display:flex;gap:8px;overflow-x:auto;padding:4px 0 10px;margin:14px 0 0;list-style:none}
+.pipe li{flex:none;padding:8px 14px;border-radius:999px;border:1px solid var(--border);background:var(--bg);font-size:14px;font-weight:500}
+.pipe li:first-child{background:var(--navy);color:#fff;border-color:var(--navy)}.pipe li:last-child{background:linear-gradient(135deg,var(--purple),var(--cyan));color:#fff;border-color:transparent}
+.vid{overflow:hidden}.thumb{aspect-ratio:16/9;display:grid;place-items:center;background:linear-gradient(135deg,#101B35,#2B2F78 60%,#7357FF)}
+.v2 .thumb{background:linear-gradient(135deg,#101B35,#17506b 60%,#39D5E8)}.v3 .thumb{background:linear-gradient(135deg,#2B2F78,#7357FF 55%,#39D5E8)}
+.play{border:0;background:none;cursor:pointer;color:#fff}.play b{width:60px;height:60px;background:rgba(255,255,255,.18);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.5)}
+.vid div.cap{padding:16px 18px}.vid p{font-size:14px;color:var(--muted)}
+.calc{display:grid;gap:22px;margin-top:36px}@media(min-width:900px){.calc{grid-template-columns:1.2fr 1fr;align-items:start}}
+.panel{padding:26px}
+.f{display:grid;gap:16px}.f2{display:grid;gap:16px}@media(min-width:640px){.f2{grid-template-columns:1fr 1fr}}
+label,.lab{display:block;font-size:14px;font-weight:600;margin-bottom:6px}
+input,select,textarea{width:100%;padding:12px 13px;border-radius:12px;border:1px solid var(--border);background:var(--bg);color:var(--text);font:16px Inter,sans-serif}
+textarea{min-height:104px;resize:vertical}
+input[aria-invalid="true"],select[aria-invalid="true"],textarea[aria-invalid="true"]{border-color:var(--err)}
+.err{color:var(--err);font-size:13px;min-height:0;margin-top:4px}
+.chk{display:flex;gap:10px;align-items:flex-start;font-weight:400;margin:0}.chk input{width:20px;height:20px;margin-top:2px;flex:none;accent-color:var(--purple)}
+.extras{display:grid;gap:10px}
+.sum{padding:28px;color:#fff;background:linear-gradient(150deg,#101B35,#232A6B 70%,#4B3BB8);border-radius:22px;box-shadow:var(--shadow);position:sticky;top:calc(env(safe-area-inset-top,0px) + 84px)}
+.row{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.15);font-size:15px}.row small{display:block;opacity:.7}
+.row.tot{border:0;padding-top:20px;font:700 1.1rem Poppins,sans-serif}.row.tot b{font-size:2rem;color:var(--cyan)}
+.sum p{font-size:13px;opacity:.75;margin-top:6px}
+.ok{margin-top:18px;padding:16px 18px;border-radius:14px;background:color-mix(in srgb,var(--cyan) 18%,var(--surface));border:1px solid var(--cyan);font-size:15px}
+.about{display:grid;gap:36px}@media(min-width:900px){.about{grid-template-columns:1fr 1fr}}
+.mini{padding:22px;margin-bottom:16px}.mini p{color:var(--muted);font-size:15px;margin-top:6px}
+footer{background:var(--navy);color:#C9D0E6;padding:48px 0 56px;font-size:14px}
+footer .logo{color:#fff;margin-bottom:12px}footer nav{display:flex;flex-wrap:wrap;gap:8px 22px;margin:20px 0}footer a{color:#fff;text-decoration:none}
+.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 20px);transform:translate(-50%,30px);opacity:0;background:var(--navy);color:#fff;padding:12px 18px;border-radius:12px;font-size:14px;max-width:min(92vw,420px);transition:.3s;z-index:80;pointer-events:none;border:1px solid rgba(255,255,255,.2)}.toast.on{opacity:1;transform:translate(-50%,0)}
+[hidden]{display:none!important}
+.fest{margin-top:16px;padding:12px 16px;border-radius:14px;border:1px solid var(--fc,var(--cyan));background:color-mix(in srgb,var(--fc,var(--cyan)) 14%,var(--surface));font-size:15px;max-width:52ch}
+.snow{position:fixed;inset:0;pointer-events:none;z-index:40;overflow:hidden}
+.snow i{position:absolute;top:-12px;border-radius:50%;background:var(--cyan);opacity:.55;animation:fall linear infinite}
+@keyframes fall{to{transform:translate(30px,105vh)}}
+.vm{position:fixed;inset:0;display:grid;place-items:center;padding:16px;background:rgba(8,12,28,.8);z-index:90}
+.vbox{width:min(760px,100%);background:var(--surface);border-radius:22px;overflow:hidden;box-shadow:var(--shadow)}
+.vhead{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--border)}
+.x{background:none;border:1px solid var(--border);border-radius:10px;width:38px;height:38px;color:var(--text);cursor:pointer;font-size:16px}
+.stage{min-height:320px;display:grid;place-items:center;text-align:center;color:#fff;padding:28px;background:linear-gradient(135deg,#101B35,#2B2F78 60%,#7357FF)}
+.sc{max-width:520px;animation:pop .6s ease both}.sc h3{font-size:clamp(1.3rem,4vw,1.8rem);margin:18px 0 8px}.sc p{opacity:.88}
+.tile.big{width:84px;height:84px;margin:0 auto;border-radius:24px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4)}.big svg{width:40px;height:40px}
+@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.96)}}
+.bars{display:flex;gap:6px;padding:14px 16px 6px}.bars i{flex:1;height:4px;border-radius:2px;background:var(--border)}.bars i.on{background:var(--purple)}
+.vctl{padding:6px 16px 16px}
+.wa{position:fixed;right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);z-index:55;display:flex;align-items:center;gap:8px;background:#25D366;color:#06260F;text-decoration:none;font:600 14px Poppins,sans-serif;padding:12px 16px;border-radius:999px;box-shadow:0 10px 24px -10px rgba(0,0,0,.5)}
+footer label{color:#C9D0E6;font-weight:500;margin-bottom:12px}footer select{width:auto;margin-left:8px;padding:6px 10px;background:#1B2748;color:#fff;border-color:#2F3D66}
+@media(prefers-reduced-motion:reduce){.sc,.snow i{animation:none}}
+.tl{list-style:none;margin:0;padding:0}
+.tl li{position:relative;padding:0 0 18px 32px;color:var(--muted);font-size:15px}
+.tl li::before{content:"";position:absolute;left:0;top:3px;width:16px;height:16px;border-radius:50%;border:2px solid var(--border);background:var(--surface)}
+.tl li::after{content:"";position:absolute;left:7px;top:22px;bottom:-1px;width:2px;background:var(--border)}
+.tl li:last-child::after{display:none}
+.tl li.done{color:var(--text)}.tl li.done::before{background:var(--purple);border-color:var(--purple)}.tl li.done::after{background:var(--purple)}
+.tl li.cur{color:var(--text);font-weight:600}.tl li.cur::before{border-color:var(--cyan);background:var(--cyan);box-shadow:0 0 0 5px color-mix(in srgb,var(--cyan) 30%,transparent)}
+.thead{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.tag{font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--bg);border:1px solid var(--border);color:var(--muted)}
+.ful{margin-top:6px;padding:14px 16px;border-radius:14px;background:var(--bg);border:1px solid var(--border);font-size:15px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.pen{animation:none;stroke-dashoffset:0}*{transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="announce" id="bar">Introducing Scriptora <span>|</span> Professional Document Preparation Starting at ₹5/Page</div>
+<header class="hdr"><div class="wrap nav">
+<a class="logo" href="#top" aria-label="Scriptora home"><i></i>Scriptora</a>
+<nav id="menu" class="links" aria-label="Main"><a href="#top">Home</a><a href="#services">Services</a><a href="#how">How It Works</a><a href="#pricing">Pricing</a><a href="#track">Track Order</a><a href="#about">About Us</a><a href="#contact">Contact</a><a class="m-only" href="#" data-toast="Customer login arrives with Supabase Auth in the full build.">Login</a></nav>
+<div class="acts"><a class="login" href="#" data-toast="Customer login arrives with Supabase Auth in the full build.">Login</a><a class="btn btn-p sm" href="#order">Get Started</a>
+<button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div>
+</div></header>
+
+<main id="main">
+<section class="hero" id="top"><div class="wrap hgrid">
+<div>
+<h1>Give Your Documents the Presentation They Deserve.</h1>
+<p class="lead">Professional document preparation, handwriting-style lettering, formatting and creative academic support, all in one convenient place.</p>
+<div class="btns"><a class="btn btn-p" href="#order">Place an Order</a><a class="btn btn-s" href="#services">Explore Services</a></div>
+<p class="fine">Prices start at ₹5 per page. Pickup is free, and delivery is free above ₹500, across Nathdwara, Kankroli and Udaipur.</p>
+<div class="fest" id="fest" hidden></div>
+</div>
+<div class="card art">
+<svg viewBox="0 0 480 340" role="img" aria-label="Illustration of a desktop writing machine, a screen showing a document, and neatly arranged paper sheets">
+<defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7357FF"/><stop offset="1" stop-color="#39D5E8"/></linearGradient></defs>
+<rect width="480" height="340" fill="var(--surface)"/>
+<circle cx="410" cy="56" r="80" fill="url(#g1)" opacity=".16"/>
+<rect x="30" y="40" width="210" height="136" rx="12" fill="#101B35"/>
+<rect x="40" y="50" width="190" height="116" rx="6" fill="#1B2A52"/>
+<rect x="54" y="64" width="72" height="8" rx="4" fill="#39D5E8"/>
+<rect x="54" y="82" width="150" height="6" rx="3" fill="#7357FF"/>
+<rect x="54" y="98" width="162" height="6" rx="3" fill="#fff" opacity=".35"/><rect x="54" y="112" width="140" height="6" rx="3" fill="#fff" opacity=".35"/><rect x="54" y="126" width="156" height="6" rx="3" fill="#fff" opacity=".35"/><rect x="54" y="140" width="96" height="6" rx="3" fill="#fff" opacity=".35"/>
+<rect x="123" y="176" width="24" height="22" fill="#101B35"/><rect x="96" y="196" width="78" height="8" rx="4" fill="#101B35"/>
+<rect x="268" y="132" width="180" height="96" rx="16" fill="#101B35"/>
+<rect x="284" y="148" width="64" height="8" rx="4" fill="#39D5E8"/><circle cx="424" cy="152" r="6" fill="#4ADE80"/>
+<path d="M300 132V98h70" stroke="#7357FF" stroke-width="9" stroke-linecap="round" fill="none"/>
+<path d="M370 98l8 30" stroke="#39D5E8" stroke-width="5" stroke-linecap="round"/>
+<rect x="286" y="226" width="144" height="72" rx="4" fill="#fff" stroke="var(--border)"/>
+<path class="pen" d="M298 244c10-12 14 10 24-2s12 8 22-2 14 10 24-2 12 8 22-1 14 6 24-2M298 262c8-8 12 8 22-1s14 6 24-2 12 8 20-2M298 280c10-10 12 6 22-2s12 6 20-2" stroke="#5B3FE6" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<g transform="rotate(-5 90 270)"><rect x="34" y="238" width="120" height="70" rx="4" fill="#fff" stroke="var(--border)"/><rect x="46" y="252" width="70" height="5" rx="2.5" fill="#C9CFE2"/><rect x="46" y="266" width="90" height="5" rx="2.5" fill="#C9CFE2"/><rect x="46" y="280" width="56" height="5" rx="2.5" fill="#C9CFE2"/></g>
+<rect x="158" y="262" width="96" height="46" rx="4" fill="#fff" stroke="var(--border)"/><rect x="168" y="274" width="60" height="5" rx="2.5" fill="url(#g1)"/><rect x="168" y="286" width="76" height="5" rx="2.5" fill="#C9CFE2"/>
+<rect x="0" y="312" width="480" height="28" fill="var(--bg)"/>
+</svg>
+<button class="play-pill" data-vid="promo"><b><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M7 4l13 8-13 8z"/></svg></b>Watch the promo</button>
+</div>
+</div></section>
+
+<section class="trust" aria-label="Why Scriptora"><div class="wrap grid">
+<div class="tr"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><div><b>Affordable Pricing</b><span>Clear per-page rates from ₹5</span></div></div>
+<div class="tr"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><div><b>Easy Online Ordering</b><span>Upload, choose, submit</span></div></div>
+<div class="tr"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><div><b>Multiple Document Styles</b><span>Lettering, formatting, typography</span></div></div>
+<div class="tr"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><div><b>Convenient Order Tracking</b><span>Eight clear status stages</span></div></div>
+</div></section>
+
+<section id="services"><div class="wrap">
+<h2>Six services, one simple workflow</h2>
+<p class="sub">Starting prices below are sample data. Admins can change every rate from the pricing dashboard.</p>
+<div class="grid" id="svcGrid"></div>
+</div></section>
+
+<section class="alt" id="how"><div class="wrap">
+<h2>How ordering works</h2>
+<p class="sub">Four steps from upload to download, with a visible status at every stage.</p>
+<div class="grid steps">
+<div class="step"><h3>Choose a service</h3><p>Pick the style that fits your document and see the price before you commit.</p></div>
+<div class="step"><h3>Upload and describe</h3><p>Add your PDF, DOCX or images, plus your page count and deadline.</p></div>
+<div class="step"><h3>Pay securely</h3><p>Once your order is confirmed, pay online through Razorpay or UPI.</p></div>
+<div class="step"><h3>Track, then collect or receive</h3><p>Follow progress online, then pick up your order or have it delivered across the city.</p></div>
+</div>
+<h3 style="margin-top:36px">Every order moves through these stages</h3>
+<ol class="pipe" aria-label="Order statuses"><li>Order Received</li><li>Under Review</li><li>Payment Pending</li><li>Confirmed</li><li>Processing</li><li>Quality Check</li><li>Ready</li><li>Completed</li></ol>
+</div></section>
+
+<section id="videos"><div class="wrap">
+<h2>See How Scriptora Works</h2>
+<p class="sub">Short animated explainers made for Scriptora. Admins can swap in AI-generated or filmed footage for each card.</p>
+<div class="grid">
+<article class="card vid"><div class="thumb"><button class="play" aria-label="Play: How to Place an Order" data-vid="order"><b><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M7 4l13 8-13 8z"/></svg></b></button></div><div class="cap"><h3>How to Place an Order</h3><p>From choosing a service to submitting your files.</p></div></article>
+<article class="card vid v2"><div class="thumb"><button class="play" aria-label="Play: Our Document Preparation Process" data-vid="process"><b><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M7 4l13 8-13 8z"/></svg></b></button></div><div class="cap"><h3>Our Document Preparation Process</h3><p>What happens between “Confirmed” and “Ready”.</p></div></article>
+<article class="card vid v3"><div class="thumb"><button class="play" aria-label="Play: Explore Our Writing and Formatting Styles" data-vid="styles"><b><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M7 4l13 8-13 8z"/></svg></b></button></div><div class="cap"><h3>Explore Our Writing and Formatting Styles</h3><p>A look at lettering, layouts and typography options.</p></div></article>
+</div></div></section>
+
+<section class="alt" id="pricing"><div class="wrap">
+<h2>Estimate your price in seconds</h2>
+<p class="sub">Example: 100 pages at ₹5 per page comes to ₹500. Pickup is free; home delivery is ₹40, free above ₹500. All rates are sample values until set by an admin.</p>
+<div class="calc">
+<div class="card panel f">
+<div><label for="svc">Service type</label><select id="svc"></select></div>
+<div id="chartBox" hidden><label for="csz">Diagram length</label><select id="csz"></select></div>
+<div class="f2"><div><label for="pages" id="pagesLbl">Number of pages</label><input id="pages" type="number" min="1" max="5000" value="100" inputmode="numeric"></div>
+<div><label for="paper">Paper size</label><select id="paper"></select></div></div>
+<div><label for="fmt">Formatting requirements</label><select id="fmt"></select></div>
+<div><label for="ful">Pickup or delivery</label><select id="ful"><option value="0">Pickup (free)</option><option value="1">Home delivery in the city</option></select></div>
+<div><span class="lab">Additional services</span><div class="extras" id="extras"></div></div>
+<div><label for="cc">Coupon code</label><div style="display:flex;gap:10px"><input id="cc" autocapitalize="characters" placeholder="Enter code"><button class="btn btn-s" type="button" id="ccb">Apply</button></div><div class="fine" id="cmsgc" role="status" style="margin-top:6px"></div></div>
+</div>
+<aside class="sum" aria-live="polite" aria-label="Price estimate"><h3 style="margin-bottom:8px">Your estimate</h3><div id="out"></div><p>Estimates are indicative. The final price is confirmed when we review your order.</p></aside>
+</div></div></section>
+
+<section id="order"><div class="wrap">
+<h2>Place an order</h2>
+<p class="sub">This prototype validates your details but doesn’t send them anywhere. With Supabase connected, submitting creates a real order with a unique ID.</p>
+<form class="card panel f" id="orderForm" novalidate style="margin-top:36px">
+<div class="f2"><div><label for="name">Full name</label><input id="name" autocomplete="name"><div class="err" id="e_name" role="alert"></div></div>
+<div><label for="email">Email</label><input id="email" type="email" autocomplete="email"><div class="err" id="e_email" role="alert"></div></div></div>
+<div class="f2"><div><label for="phone">Phone number</label><input id="phone" type="tel" autocomplete="tel" placeholder="10-digit mobile number"><div class="err" id="e_phone" role="alert"></div></div>
+<div><label for="osvc">Service</label><select id="osvc"></select></div></div>
+<div class="f2"><div><label for="opages">Number of pages</label><input id="opages" type="number" min="1" max="5000" inputmode="numeric"><div class="err" id="e_opages" role="alert"></div></div>
+<div><label for="deadline">Deadline</label><input id="deadline" type="date"><div class="err" id="e_deadline" role="alert"></div></div></div>
+<div><label for="reqs">Document requirements</label><textarea id="reqs" placeholder="Style, margins, headings, special instructions"></textarea><div class="err" id="e_reqs" role="alert"></div></div>
+<div class="f2"><div><label for="deliv">Pickup or delivery</label><select id="deliv"><option value="0">Pickup (free)</option><option value="1">Home delivery in the city</option></select></div>
+<div><label for="file">Upload documents (PDF, DOCX or image, max 10 MB each)</label><input id="file" type="file" multiple accept=".pdf,.docx,.jpg,.jpeg,.png,.webp"><div class="err" id="e_file" role="alert"></div></div></div>
+<div class="f2"><div><label for="slot">Preferred time slot</label><select id="slot"><option>Morning</option><option>Afternoon</option><option>Evening</option></select></div><div><label for="oc">Coupon or referral code (optional)</label><input id="oc" autocapitalize="characters"></div></div>
+<p id="pickNote" class="fine" style="margin:0">Pickup point details are shared once your order is confirmed.</p>
+<div id="addrBox" class="f" hidden><div><label for="addr">Delivery address</label><textarea id="addr" style="min-height:76px" autocomplete="street-address"></textarea><div class="err" id="e_addr" role="alert"></div></div><div class="f2"><div><label for="pin">Pincode</label><input id="pin" inputmode="numeric" maxlength="6" autocomplete="postal-code"><div class="err" id="e_pin" role="alert"></div></div><div><label for="lm">Landmark (optional)</label><input id="lm"></div></div><p class="fine" style="margin:0">We deliver in Nathdwara, Kankroli and the Udaipur palace area (pincodes 313301, 313324 and 313001 to 313004). We confirm your address during review.</p></div>
+<div><label class="chk" for="wa_opt"><input id="wa_opt" type="checkbox"><span>Send my order updates on WhatsApp to the phone number above.</span></label></div>
+<div><label class="chk" for="consent"><input id="consent" type="checkbox"><span>I confirm I have permission to use the material I submit, and I’m using Scriptora for legitimate document preparation.</span></label><div class="err" id="e_consent" role="alert"></div></div>
+<div><button class="btn btn-p" type="submit">Review my order</button></div>
+<div id="orderOk" aria-live="polite"></div>
+</form>
+</div></section>
+
+<section class="alt" id="track"><div class="wrap">
+<h2>Track your order</h2>
+<p class="sub">Enter your order ID and the phone number or email used at checkout. Customers who opt in also get a WhatsApp message each time the status changes. Live lookup arrives once Supabase is connected; the samples show what customers will see.</p>
+<form class="card panel f2" id="trackForm" novalidate style="margin-top:36px">
+<div><label for="tid">Order ID</label><input id="tid" placeholder="SCR-2026-0123" autocapitalize="characters"><div class="err" id="e_tid" role="alert"></div></div>
+<div><label for="tcon">Phone or email</label><input id="tcon"><div class="err" id="e_tcon" role="alert"></div></div>
+<div style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn btn-p" type="submit">Track order</button><button class="btn btn-s" type="button" data-smp="0">Sample: delivery order</button><button class="btn btn-s" type="button" data-smp="1">Sample: pickup order</button></div>
+</form>
+<div id="trackOut" aria-live="polite"></div>
+</div></section>
+
+<section id="partners"><div class="wrap">
+<h2>Refer friends. Partner with us.</h2>
+<p class="sub">Reward rates are sample values and can be changed by the admin.</p>
+<div class="grid">
+<article class="card svc"><h3>Customer referrals</h3><p>Every customer gets a personal referral code. When a friend orders with it, they get 10% off and you earn ₹50 in Scriptora credits.</p></article>
+<article class="card svc"><h3>Creator program</h3><p>Sign up and create your own code in seconds. Customers who use it get 10% off. For every 500 pages your referrals complete, you earn ₹250 to withdraw and ₹250 in site credits.</p><div style="display:flex;gap:8px"><input id="ch" placeholder="Your channel name" aria-label="Your channel name"><button class="btn btn-s sm" type="button" id="chb">Preview code</button></div><div class="fine" id="chm" role="status"></div><a class="link" href="#" data-wa="Hi Scriptora, I’d like to join the creator program. My channel link: " target="_blank" rel="noopener">Ask us on WhatsApp</a></article>
+<article class="card svc"><h3>Credits</h3><p>Credits are added to your account and can be used on any future order. Your balance shows in your dashboard.</p></article>
+</div></div></section>
+
+<section class="alt" id="refunds"><div class="wrap">
+<h2>Refunds and credits</h2>
+<p class="sub">A short summary. The full Refund and Cancellation policies are published on their own pages.</p>
+<div class="grid">
+<article class="card svc"><h3>Work not started</h3><p>Cancel before we begin and you get a full refund to your original payment method.</p></article>
+<article class="card svc"><h3>About 10 to 20% done</h3><p>You receive Scriptora credits for the remaining value, to use on a new order.</p></article>
+<article class="card svc"><h3>Further along</h3><p>Message us on WhatsApp or email and we’ll review your order together.</p></article>
+</div></div></section>
+
+<section id="about"><div class="wrap about">
+<div><h2>Making Document Preparation Simpler.</h2>
+<p class="sub">Scriptora is a technology-enabled document services platform focused on convenient ordering, professional presentation and accessible document preparation.</p>
+<p class="sub">We started from a simple idea: ordering document services should feel as easy as using any modern app. We serve Nathdwara, Kankroli and the Udaipur palace area, with pickup and home delivery.</p></div>
+<div>
+<div class="card mini"><h3>Our mission</h3><p>Give every customer clear prices, a straightforward order flow and visible progress from start to finish.</p></div>
+<div class="card mini"><h3>Responsible use</h3><p>Machine-produced lettering is a document-styling service. It is never presented as a student’s own handwriting, so please follow your institution’s rules on submitted work.</p></div>
+</div></div></section>
+
+<section class="alt" id="contact"><div class="wrap about">
+<div><h2>Talk to us</h2><p class="sub">Send an enquiry or message us on WhatsApp. Orders are accepted online 24/7.</p>
+<div class="card mini" style="margin-top:24px"><h3>Business email</h3><p><a href="mailto:aryansoniaryan2008@gmail.com">aryansoniaryan2008@gmail.com</a></p></div>
+<div class="card mini"><h3>Service area and hours</h3><p>Nathdwara, Kankroli and the Udaipur palace area, with pickup and home delivery. Orders are accepted online 24/7.</p></div>
+<div class="btns" style="margin-top:0"><a class="btn btn-p" href="#" data-wa="Hi Scriptora, I have an enquiry." target="_blank" rel="noopener">WhatsApp enquiry</a></div></div>
+<form class="card panel f" id="contactForm" novalidate>
+<div><label for="cname">Your name</label><input id="cname" autocomplete="name"><div class="err" id="e_cname" role="alert"></div></div>
+<div><label for="cemail">Email</label><input id="cemail" type="email" autocomplete="email"><div class="err" id="e_cemail" role="alert"></div></div>
+<div><label for="cmsg">Message</label><textarea id="cmsg"></textarea><div class="err" id="e_cmsg" role="alert"></div></div>
+<div><button class="btn btn-p" type="submit">Send enquiry</button></div><div id="contactOk" aria-live="polite"></div>
+</form></div></section>
+</main>
+
+<footer><div class="wrap">
+<a class="logo" href="#top"><i></i>Scriptora</a>
+<p>Your Documents. Beautifully Prepared.</p>
+<nav aria-label="Legal"><a href="#" data-toast="Legal pages are part of the full build.">Privacy Policy</a><a href="#" data-toast="Legal pages are part of the full build.">Terms and Conditions</a><a href="#" data-toast="Legal pages are part of the full build.">Refund Policy</a><a href="#" data-toast="Legal pages are part of the full build.">Cancellation Policy</a><a href="#" data-toast="Legal pages are part of the full build.">Copyright Policy</a><a href="#" data-toast="Legal pages are part of the full build.">Academic Integrity Policy</a><a href="#" data-toast="Add your Instagram link in admin settings.">Instagram</a></nav>
+<label for="fsel">Preview festival theme (admins pick this in the dashboard)<select id="fsel"></select></label>
+<p>© 2026 Scriptora. Sample pricing and content shown for demonstration.</p>
+</div></footer>
+<div class="snow" id="snow" aria-hidden="true"></div>
+<div class="vm" id="vm" hidden role="dialog" aria-modal="true" aria-labelledby="vt"><div class="vbox"><div class="vhead"><b id="vt"></b><button class="x" id="vx" aria-label="Close video">✕</button></div><div class="stage" id="stage" aria-live="polite"></div><div class="bars" id="bars"></div><div class="vctl"><button class="btn btn-s sm" id="vpp" type="button">Pause</button></div></div></div>
+<a class="wa" href="#" data-wa="Hi Scriptora, I’d like to place an order." target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 01-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1121 11.5z"/></svg>WhatsApp</a>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const $=(s)=>document.querySelector(s);
+const PRICING={
+ services:[
+  {n:"Handwriting-Style Lettering",p:5,d:"Neat, handwriting-style lettering prepared on our writing machines for notes, records and documents.",i:"M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4L16.5 3.5z"},
+  {n:"Document Formatting",p:5,d:"Consistent headings, spacing, margins and layouts for reports and assignments you have written.",i:"M3 3h18v18H3zM3 9h18M9 21V9"},
+  {n:"Notes Organisation",p:6,d:"Your own notes arranged into clean, readable, well-ordered pages.",i:"M4 19.5A2.5 2.5 0 016.5 17H20V3H6.5A2.5 2.5 0 004 5.5v14zM20 17v4H6.5"},
+  {n:"Project Charts and Layouts",p:10,u:"diagram",d:"Clean diagrams, charts and layouts for project files. ₹10 to ₹15 per diagram, depending on length.",i:"M3 3v18h18M7 14l4-4 3 3 5-6"},
+  {n:"Professional Document Preparation",p:7,d:"Typed or styled preparation for forms, letters and reports.",i:"M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zM14 2v6h6M8 13h8M8 17h6"},
+  {n:"Creative Typography",p:10,d:"Decorative lettering and title styles for covers, posters and headings.",i:"M4 7V4h16v3M9 20h6M12 4v16"}],
+ paper:[["A4",1],["A5",.8],["A3",1.8]],
+ delivery:{fee:40,freeAbove:500},
+ chart:[["Short",10],["Medium",12],["Long",15]],
+ bulk:[[250,.15],[100,.10],[50,.05]],
+ coupons:[{code:"WELCOME10",pct:.10},{code:"XMAS15",pct:.15,fest:"christmas"},{code:"NEWYEAR10",pct:.10,fest:"newyear"},{code:"DIWALI15",pct:.15,fest:"diwali"},{code:"HOLI10",pct:.10,fest:"holi"}],
+ pins:["313301","313324","313001","313002","313003","313004"],
+ format:[["None",0],["Basic: headings and margins",.5],["Advanced: tables, headers and footers",1.5]],
+ extras:[{id:"proof",n:"Proofreading check",t:"page",v:1},{id:"bind",n:"Spiral binding",t:"flat",v:40},{id:"fast",n:"Express turnaround (+20%)",t:"pct",v:.2}]
+};
+var CP=null,FEST="christmas";
+const inr=n=>"₹"+(Math.round(n*100)/100).toLocaleString("en-IN",{maximumFractionDigits:2});
+const opt=(a,f)=>a.map((x,i)=>`<option value="${i}">${f(x)}</option>`).join("");
+const ico=d=>`<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${d}"/></svg>`;
+$("#svcGrid").innerHTML=PRICING.services.map((s,i)=>`<article class="card svc"><div class="tile">${ico(s.i)}</div><h3>${s.n}</h3><p>${s.d}</p><div class="from">From <b>${inr(s.p)}</b> per ${s.u||"page"}</div><button class="link" data-svc="${i}">Learn more and estimate</button></article>`).join("");
+$("#svc").innerHTML=opt(PRICING.services,s=>`${s.n} (from ${inr(s.p)})`);
+$("#osvc").innerHTML=$("#svc").innerHTML;
+$("#paper").innerHTML=opt(PRICING.paper,p=>p[0]);
+$("#fmt").innerHTML=opt(PRICING.format,f=>f[0]);
+$("#csz").innerHTML=opt(PRICING.chart,c=>`${c[0]} (${inr(c[1])})`);
+$("#extras").innerHTML=PRICING.extras.map(e=>`<label class="chk"><input type="checkbox" id="x_${e.id}"><span>${e.n}</span></label>`).join("");
+function calc(){
+ const s=PRICING.services[+$("#svc").value],pg=Math.max(0,parseInt($("#pages").value)||0);
+ const isC=$("#svc").value==="3",u=s.u||"page",per=isC?PRICING.chart[+$("#csz").value][1]:s.p*PRICING.paper[+$("#paper").value][1]+PRICING.format[+$("#fmt").value][1];
+ $("#chartBox").hidden=!isC;$("#pagesLbl").textContent=isC?"Number of diagrams":"Number of pages";
+ const sub=per*pg;let extra=0,names=[];
+ PRICING.extras.forEach(e=>{if($("#x_"+e.id).checked){extra+=e.t==="page"?e.v*pg:e.t==="flat"?e.v:sub*e.v;names.push(e.n)}});
+ const bt=PRICING.bulk.find(b=>pg>=b[0]),bd=bt?sub*bt[1]:0,cp=CP?CP.pct:0,cd=(sub-bd)*cp,net=sub+extra-bd-cd;
+ $("#out").innerHTML=`<div class="row"><span>Price per ${u}</span><b>${inr(per)}</b></div>
+ <div class="row"><span>${pg} ${pg===1?u:u+"s"} × ${inr(per)}</span><b>${inr(sub)}</b></div>
+ <div class="row"><span>Additional charges<small>${names.length?names.join(", "):"None selected"}</small></span><b>${inr(extra)}</b></div>
+ ${bd?`<div class="row"><span>Bulk discount<small>${Math.round(bt[1]*100)}% off for ${bt[0]}+ ${u}s</small></span><b>−${inr(bd)}</b></div>`:""}
+ ${cd?`<div class="row"><span>Coupon ${CP.code}<small>${Math.round(cp*100)}% off</small></span><b>−${inr(cd)}</b></div>`:""}
+ <div class="row"><span>Pickup or delivery<small>${$("#ful").value==="1"?"Free above "+inr(PRICING.delivery.freeAbove):"Pickup from our point"}</small></span><b>${inr(delFee(net))}</b></div>
+ <div class="row tot"><span>Total estimate</span><b>${inr(net+delFee(net))}</b></div>`;
+}
+["svc","csz","pages","paper","fmt","ful"].forEach(id=>$("#"+id).addEventListener("input",calc));
+PRICING.extras.forEach(e=>$("#x_"+e.id).addEventListener("change",calc));calc();
+document.addEventListener("click",e=>{
+ const b=e.target.closest("[data-svc]");
+ if(b){$("#svc").value=b.dataset.svc;$("#osvc").value=b.dataset.svc;calc();$("#pricing").scrollIntoView();return}
+ const t=e.target.closest("[data-toast]");if(t){e.preventDefault();toast(t.dataset.toast)}
+ if(e.target.closest(".links a"))closeMenu();
+});
+let tt;function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("on"),3200)}
+const burger=$("#burger"),menu=$("#menu");
+function closeMenu(){menu.classList.remove("open");burger.setAttribute("aria-expanded","false")}
+burger.addEventListener("click",()=>{const o=menu.classList.toggle("open");burger.setAttribute("aria-expanded",o)});
+const today=new Date(Date.now()-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,10);
+$("#deadline").min=today;
+const EMAIL=v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
+const V={
+ name:v=>v.trim().length<2&&"Enter your full name.",
+ email:v=>!EMAIL(v)&&"Enter a valid email address, like name@example.com.",
+ phone:v=>!/^(\+91)?[6-9]\d{9}$/.test(v.replace(/[\s-]/g,""))&&"Enter a valid 10-digit Indian mobile number.",
+ opages:v=>!(+v>=1&&+v<=5000)&&"Enter a page count between 1 and 5,000.",
+ deadline:v=>(!v||v<today)&&"Choose a deadline from today onwards.",
+ reqs:v=>v.trim().length<10&&"Describe your requirements in at least 10 characters.",
+ consent:v=>!v&&"Please confirm this to continue.",
+ cname:v=>v.trim().length<2&&"Enter your name.",
+ cemail:v=>!EMAIL(v)&&"Enter a valid email address, like name@example.com.",
+ cmsg:v=>v.trim().length<10&&"Write a message of at least 10 characters.",
+ addr:v=>v.trim().length<10&&"Enter your full delivery address.",
+ pin:v=>!/^\d{6}$/.test(v.trim())?"Enter a 6-digit pincode.":!PRICING.pins.includes(v.trim())&&"We don’t deliver to this pincode yet. Choose pickup or message us on WhatsApp.",
+ tid:v=>!/^SCR-\d{4}-\d{4}$/i.test(v.trim())&&"Enter your order ID, like SCR-2026-0123.",
+ tcon:v=>!(EMAIL(v)||/^(\+91)?[6-9]\d{9}$/.test(v.replace(/[\s-]/g,"")))&&"Enter the phone number or email used for the order."
+};
+function validate(ids){
+ let first=null;
+ ids.forEach(id=>{
+  const el=$("#"+id),m=V[id]?V[id](el.type==="checkbox"?el.checked:el.value):false;
+  $("#e_"+id).textContent=m||"";el.setAttribute("aria-invalid",!!m);
+  if(m&&!first)first=el;
+ });
+ return first;
+}
+function checkFiles(){
+ const ok=/\.(pdf|docx|jpe?g|png|webp)$/i;let m="";
+ for(const f of $("#file").files){if(!ok.test(f.name)){m=`“${f.name}” isn’t a PDF, DOCX or image.`;break}if(f.size>10*1048576){m=`“${f.name}” is over 10 MB.`;break}}
+ $("#e_file").textContent=m;return m;
+}
+$("#orderForm").addEventListener("submit",e=>{
+ e.preventDefault();$("#orderOk").innerHTML="";
+ const bad=validate(["name","email","phone","opages","deadline","reqs",...($("#deliv").value==="1"?["addr","pin"]:[]),"consent"]),fm=checkFiles();
+ if(bad){bad.focus();return}if(fm){$("#file").focus();return}
+ const s=PRICING.services[+$("#osvc").value],n=+$("#opages").value;
+ $("#orderOk").innerHTML=`<div class="ok"><b>Your details look good.</b> ${n} pages of ${s.n} start from ${inr(s.p*n)}. ${$("#deliv").value==="1"?"Home delivery in the city selected.":"Pickup selected."} ${$("#wa_opt").checked?"We’ll send status updates on WhatsApp once ordering is live.":""} Nothing has been sent: connect Supabase to create real orders and unique order IDs.</div>`;
+});
+$("#contactForm").addEventListener("submit",e=>{
+ e.preventDefault();$("#contactOk").innerHTML="";
+ const bad=validate(["cname","cemail","cmsg"]);if(bad){bad.focus();return}
+ $("#contactOk").innerHTML=`<div class="ok">Your message looks good. Nothing has been sent yet: this form connects to the backend in the full build.</div>`;
+});
+function delFee(a){return $("#ful").value==="1"&&a>0&&a<PRICING.delivery.freeAbove?PRICING.delivery.fee:0}
+$("#deliv").addEventListener("change",()=>{const d=$("#deliv").value==="1";$("#addrBox").hidden=!d;$("#pickNote").hidden=d;["addr","pin"].forEach(id=>{$("#e_"+id).textContent="";$("#"+id).removeAttribute("aria-invalid")})});
+const STAGES=["Order Received","Under Review","Payment Pending","Confirmed","Processing","Quality Check","Ready","Completed"];
+const SMP=[{id:"SCR-2026-0001",svc:"Handwriting-Style Lettering",pages:100,mode:"1",stage:5},{id:"SCR-2026-0002",svc:"Document Formatting",pages:40,mode:"0",stage:6}];
+function showTrack(o){
+ const f=o.mode==="1"?["Out for delivery","Delivered"]:["Ready for pickup","Picked up"];
+ const li=STAGES.map((s,i)=>`<li class="${i<o.stage?"done":i===o.stage?"cur":""}">${s}</li>`).join("");
+ $("#trackOut").innerHTML=`<div class="card panel" style="margin-top:22px"><div class="thead"><h3>${o.id}</h3><span class="tag">Sample data</span></div><p class="fine" style="margin:6px 0 18px">${o.svc}, ${o.pages} pages, ${o.mode==="1"?"home delivery":"pickup"}</p><ol class="tl">${li}</ol><div class="ful"><b>${o.mode==="1"?"Delivery":"Pickup"}:</b> ${f.join(", then ")}. This part starts once the order reaches Ready.</div></div>`;
+}
+document.querySelectorAll("[data-smp]").forEach(b=>b.addEventListener("click",()=>{["tid","tcon"].forEach(id=>{$("#e_"+id).textContent=""});showTrack(SMP[+b.dataset.smp])}));
+$("#trackForm").addEventListener("submit",e=>{
+ e.preventDefault();$("#trackOut").innerHTML="";
+ const bad=validate(["tid","tcon"]);if(bad){bad.focus();return}
+ $("#trackOut").innerHTML=`<div class="ok">Order lookup isn’t connected yet, so we can’t show ${$("#tid").value.trim().toUpperCase()}. Open a sample above to see the tracking view.</div>`;
+});
+const WA="918619288298";
+document.querySelectorAll("[data-wa]").forEach(a=>{a.href="https://wa.me/"+WA+"?text="+encodeURIComponent(a.dataset.wa)});
+function applyCoupon(){const c=$("#cc").value.trim().toUpperCase(),m=$("#cmsgc"),f=PRICING.coupons.find(x=>x.code===c);
+ if(!c){CP=null;m.textContent=""}else if(!f||(f.fest&&f.fest!==FEST)){CP=null;m.textContent="That code isn’t valid right now."}else{CP=f;m.textContent=f.code+" applied: "+Math.round(f.pct*100)+"% off."}
+ calc()}
+$("#ccb").addEventListener("click",applyCoupon);
+$("#cc").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();applyCoupon()}});
+const THEMES={
+ none:{n:"Standard",bar:"Introducing Scriptora|Professional Document Preparation Starting at ₹5/Page",bg:"#101B35",fc:"#39D5E8",f:""},
+ christmas:{n:"Christmas",bar:"🎄 Merry Christmas from Scriptora|Use code XMAS15 for 15% off",bg:"linear-gradient(90deg,#101B35,#8A1B2D 50%,#0F5B3A)",fc:"#E0405A",f:"Christmas special: use code XMAS15 for 15% off your order.",snow:1},
+ newyear:{n:"New Year",bar:"🎆 Happy New Year from Scriptora|Use code NEWYEAR10 for 10% off",bg:"linear-gradient(90deg,#101B35,#5B3FE6 55%,#101B35)",fc:"#F5B942",f:"New Year offer: use code NEWYEAR10 for 10% off."},
+ diwali:{n:"Diwali",bar:"🪔 Happy Diwali from Scriptora|Use code DIWALI15 for 15% off",bg:"linear-gradient(90deg,#101B35,#9A4A06 55%,#101B35)",fc:"#F59E0B",f:"Diwali special: use code DIWALI15 for 15% off."},
+ holi:{n:"Holi",bar:"🎨 Happy Holi from Scriptora|Use code HOLI10 for 10% off",bg:"linear-gradient(90deg,#5B3FE6,#C2255C 50%,#0E7490)",fc:"#E0407B",f:"Holi offer: use code HOLI10 for 10% off."}
+};
+function applyTheme(k){
+ FEST=k;const t=THEMES[k],b=$("#bar"),f=$("#fest"),sn=$("#snow");
+ b.innerHTML=t.bar.split("|").join("<span>|</span>");b.style.background=t.bg;
+ document.documentElement.style.setProperty("--fc",t.fc);
+ f.hidden=!t.f;f.textContent=t.f;sn.innerHTML="";
+ if(t.snow)for(let i=0;i<26;i++){const d=document.createElement("i"),z=3+Math.random()*5;d.style.cssText=`left:${Math.random()*100}%;width:${z}px;height:${z}px;animation-duration:${7+Math.random()*9}s;animation-delay:-${Math.random()*12}s`;sn.appendChild(d)}
+ if(CP&&CP.fest&&CP.fest!==k){CP=null;$("#cmsgc").textContent="That coupon ended with the theme change."}
+ calc();
+}
+$("#fsel").innerHTML=Object.keys(THEMES).map(k=>`<option value="${k}">${THEMES[k].n}</option>`).join("");
+$("#fsel").value=FEST;$("#fsel").addEventListener("change",e=>applyTheme(e.target.value));
+applyTheme(FEST);
+const VID={
+ promo:{t:"Scriptora promo",sc:[["Your Documents. Beautifully Prepared.","Handwriting-style lettering, formatting and typography, prepared on our writing machines.",0],["Six services, from ₹5 a page","Lettering, formatting, notes, charts, document preparation and typography.",1],["Order online, any time","Upload your files, get an instant estimate and place your order 24/7.",4],["Pickup or delivery","Nathdwara, Kankroli and Udaipur. Delivery is free above ₹500.",3]]},
+ order:{t:"How to place an order",sc:[["Choose a service","Pick a service and see your price instantly in the calculator.",1],["Upload your files","Add PDF, DOCX or image files and describe what you need.",4],["Pickup or delivery","Choose a time slot and how you want to receive your order.",3],["Confirm and pay","We review your order, then you pay securely online.",2],["Track every step","Follow your order from Order Received to Completed.",5]]},
+ process:{t:"Our document preparation process",sc:[["Order received","Your order reaches our queue the moment you submit it.",4],["Under review","We check your files, pages and deadline, then confirm the price.",2],["Processing","Your order is prepared on our writing machines.",0],["Quality check","Every page is checked before it is marked Ready.",1],["Ready","Collect it from our pickup point or have it delivered.",3]]},
+ styles:{t:"Writing and formatting styles",sc:[["Handwriting-style lettering","A prepared lettering style. It is a document service, not your own handwriting.",0],["Clean formatting","Consistent headings, margins and spacing.",1],["Creative typography","Decorative titles and headings for covers and posters.",5],["Charts and layouts","Neat diagrams for project files, from ₹10 each.",3]]}
+};
+let vt,vi=0,vc,vp=true;
+function scene(){const v=VID[vc],s=v.sc[vi];
+ $("#stage").innerHTML=`<div class="sc"><div class="tile big">${ico(PRICING.services[s[2]].i)}</div><h3>${s[0]}</h3><p>${s[1]}</p></div>`;
+ $("#bars").innerHTML=v.sc.map((_,i)=>`<i class="${i<=vi?"on":""}"></i>`).join("")}
+function playV(){clearInterval(vt);vt=setInterval(()=>{if(vi<VID[vc].sc.length-1){vi++;scene()}else{clearInterval(vt);vp=false;$("#vpp").textContent="Replay"}},3400)}
+function openV(k){vc=k;vi=0;vp=true;$("#vt").textContent=VID[k].t;$("#vm").hidden=false;$("#vpp").textContent="Pause";scene();playV();$("#vx").focus()}
+function closeV(){clearInterval(vt);$("#vm").hidden=true}
+$("#vpp").addEventListener("click",()=>{const p=$("#vpp");if(p.textContent==="Replay"){vi=0;scene();vp=true;p.textContent="Pause";playV()}else if(vp){vp=false;clearInterval(vt);p.textContent="Play"}else{vp=true;p.textContent="Pause";playV()}});
+$("#vx").addEventListener("click",closeV);
+$("#vm").addEventListener("click",e=>{if(e.target.id==="vm")closeV()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("#vm").hidden)closeV()});
+document.addEventListener("click",e=>{const b=e.target.closest("[data-vid]");if(b)openV(b.dataset.vid)});
+$("#chb").addEventListener("click",()=>{const c=$("#ch").value.toUpperCase().replace(/[^A-Z0-9]/g,"").slice(0,12);
+ $("#chm").textContent=c.length<3?"Enter at least 3 letters or numbers.":"Your code would be "+c+". It goes live when you sign up as a creator."});
+</script>
+</body>
+</html>
