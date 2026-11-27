@@ -139,6 +139,8 @@ create policy "Admins can update orders"
 
 -- The portal expects this RPC to return a limited shape. Drop any older version
 -- first because PostgreSQL cannot change a function's OUT/return row type in place.
+-- Existing project schema spells this column "fulfilment"; expose it as
+-- "fulfillment" to keep the RPC response compatible with the client.
 drop function if exists public.track_order(text, text);
 create function public.track_order(p_order_no text, p_contact text)
 returns table(order_no text, status text, fulfillment text, created_at timestamptz, history jsonb)
@@ -147,7 +149,7 @@ stable
 security definer
 set search_path = ''
 as $$
-  select o.order_no, o.status, o.fulfillment, o.created_at, o.status_history as history
+  select o.order_no, o.status, o.fulfilment as fulfillment, o.created_at, o.status_history as history
   from public.orders o
   where upper(o.order_no) = upper(trim(p_order_no))
     and (
